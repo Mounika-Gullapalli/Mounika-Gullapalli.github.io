@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mounika Gullapalli | Data Portfolio</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 35px;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #000;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+
+#atom-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background: #000;
+}
+
+nav, .about, .section, footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Nav */
+nav {
+  background: #111;
+  padding: 16px 140px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #222;
+}
+
+nav .name { color: #31b5d6; font-size: 18px; font-weight: 600; }
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+nav ul a {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+nav ul a:hover { color: #fff; }
+
+/* About / Hero */
+.about {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 140px;
+  display: flex;
+  flex-direction: column; /* stacks vertically */
+  align-items: center;    /* centers everything */
+  text-align: center;     /* centers text */
+  gap: 24px;
+  scroll-margin-top: 35px;
+}
+
+.profile-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 3px solid #444;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+}
+
+.about-text h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.about-text p {
+  font-size: 16px;
+  color: #aaa;
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.btn-resume {
+  display: inline-block;
+  background: #fff;
+  color: #000;
+  padding: 10px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-resume:hover { background: #ddd; }
+
+/* Sections */
+.section {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  padding: 0 35px;
+  scroll-margin-top: 35px;
+}
+
+.section h2 {
+  font-size: 35px;
+  font-weight: 700;
+  color: #A855F7;
+  border-bottom: 2px solid #333;
+  padding-bottom: 8px;
+  margin-bottom: 28px;
+}
+
+#contact {
+  text-align: center;
+}
+
+#contact .contact-links {
+  justify-content: center;
+}
+
+#contact h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Education */
+.edu-item {
+  margin-bottom: 16px;
+  padding: 24px 28px;
+  border: 1px solid #333;
+  border-radius: 12px;
+  background: #111;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.edu-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 15px rgba(196, 181, 253, 0.6),
+              0 0 30px rgba(196, 181, 253, 0.3),
+              0 0 60px rgba(196, 181, 253, 0.1);
+}
+
+.edu-item h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.edu-item .school {
+  font-size: 20px;
+  color: #60a5fa;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.edu-item ul {
+  margin-left: 20px;
+  font-size: 14px;
+  color: #ddd;
+  line-height: 1.8;
+}
+
+/* Experience */
+.exp-item {
+  margin-bottom: 28px;
+  padding: 20px;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 8px;
+}
+
+.exp-item h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.exp-item .company {
+  font-size: 14px;
+  color: #60a5fa;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.exp-item .duration {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.exp-item ul {
+  margin-left: 18px;
+  font-size: 14px;
+  color: #aaa;
+  line-height: 1.8;
+}
+
+.exp-item ul li {
+  margin-bottom: 6px;
+}
+
+.exp-item p {
+  font-size: 14px;
+  color: #aaa;
+  line-height: 1.7;
+}
+
+/* Projects */
+.project-item {
+  margin-bottom: 40px;
+}
+
+.project-imgs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.project-img {
+  width: 280px;
+  height: 160px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  overflow: hidden;
+}
+
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-item h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.project-item p {
+  font-size: 14px;
+  color: #aaa;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tag {
+  font-size: 12px;
+  padding: 3px 10px;
+  background: #1a1a2e;
+  color: #60a5fa;
+  border-radius: 20px;
+  border: 1px solid #333;
+}
+
+.project-link {
+  font-size: 14px;
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.project-link:hover { text-decoration: underline; }
+
+/* Skills */
+.skills-category {
+  margin-bottom: 28px;
+}
+
+.skills-category:last-child {
+  margin-bottom: 0;
+}
+
+.skills-category h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #A855F7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.skills-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skills-list li {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 999px;
+  transition: all 0.2s;
+}
+
+.skills-list li:hover {
+  border-color: #A855F7;
+  background: rgba(168, 85, 247, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Achievements */
+.achievement-list { list-style: none; }
+
+.achievement-list li {
+  font-size: 15px;
+  color: #e2e8f0;
+  padding: 12px 0;
+  border-bottom: 1px solid #222;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.achievement-list li:last-child { border-bottom: none; }
+
+/* Contact */
+.contact-tagline {
+  font-size: 17px;
+  color: #ccc;
+  font-weight: 400;
+  margin-bottom: 32px;
+}
+
+.contact-info {
+  font-size: 15px;
+  color: #aaa;
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.contact-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  font-size: 15px;
+  color: #A855F7;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 12px 32px;
+  border: 1.5px solid #A855F7;
+  border-radius: 999px;
+  transition: all 0.2s;
+  background: transparent;
+}
+
+.contact-link:hover {
+  background: rgba(168, 85, 247, 0.1);
+  color: #C084FC;
+}
+
+/* Footer */
+footer {
+  background: #111;
+  border-top: 1px solid #222;
+  color: #666;
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+}
+</style>
+</head>
+<body>
+
+<canvas id="atom-bg"></canvas>
+
+<!-- Nav -->
+<nav>
+  <span class="name">&nbsp;&nbsp;Mounika Gullapalli</span>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- About -->
+<div class="about" id="about">
+  <div class="profile-photo">👩‍💻</div>
+  <div class="about-text">
+    <h1>Mounika Gullapalli</h1>
+    <p>
+      Data Professional with 4+ years of experience spanning data engineering, business
+      intelligence, and operational analytics — plus a prior background in embedded systems and
+      automotive testing. I enjoy working across the full data lifecycle, from building ETL
+      pipelines on Azure to turning raw data into insights with SQL and Power BI. Recently built
+      an end-to-end NYC TLC pipeline processing 560 million records using Azure Data Factory,
+      Databricks, Delta Lake, and Snowflake.
+    </p>
+    <a href="your-resume.pdf" class="btn-resume">📄 Download Resume</a>
+  </div>
+</div>
+
+<!-- Education -->
+<div class="section" id="education">
+  <h2>Education</h2>
+
+  <div class="edu-item">
+    <h3>Master's of Science in Computer Science</h3>
+    <div class="school">Missouri State University</div>
+    <ul>
+      <li>Relevant Courses: Introduction to Data Science, Data Analytics, Data Management, Advanced Database System Concepts, Statistical Programming for Data Science</li>
+      <li>Graduation: 2024</li>
+    </ul>
+  </div>
+
+
+  <div class="edu-item">
+    <h3>Bachelor's of Engineering in Electrical and Electronics</h3>
+    <div class="school">Sreenidhi Institute of Technology</div>
+    <ul>
+      <li>Relevant Courses: Digital Logic Design, Electrical Circuits, Control Systems, Power Electronics, Electrical Machines, Embedded Systems</li>
+      <li>Graduation: 2021</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Experience -->
+<div class="section" id="experience">
+  <h2>Professional Experience</h2>
+
+  <div class="exp-item">
+    <h3>Operational Excellence Analyst</h3>
+    <div class="company">Compass Group USA / Chartwells Higher Education — Chick-fil-A, Missouri State University</div>
+    <div class="duration">Jan 2025 – Present</div>
+    <p>
+      Analyze 130K+ annual transactions ($2.6M+ in yearly sales) using SQL, Excel, and Power BI
+      to identify demand patterns, staffing gaps, and food-waste trends for a high-volume campus
+      retail operation. Insights from this analysis have supported schedule and production
+      changes that reduced labor costs by ~10%, cut food waste by ~20%, and improved service
+      speed by ~15%.
+    </p>
+  </div>
+
+  <div class="exp-item">
+    <h3>Data Engineer</h3>
+    <div class="company">TCS · Client: Optum (United Health Group)</div>
+    <div class="duration">Jul 2021 – Jan 2023</div>
+    <p>
+      Designed and implemented scalable, reliable data pipelines for business-critical
+      applications at Optum. Collaborated with cross-functional teams to design data models,
+      architectures, and pipelines, and built the ingestion, transformation, and storage systems
+      behind them. Focused on data quality through validation and monitoring, and optimized
+      pipelines for performance, scalability, and cost.
+    </p>
+  </div>
+
+  <div class="exp-item">
+    <h3>Embedded Test Engineer</h3>
+    <div class="company">Hyundai Mobis</div>
+    <div class="duration">Jun 2020 – Jul 2021</div>
+    <p>
+      Tested Driver Assistance System (DAS) features on real hardware test benches, validating
+      camera-based and ECU-driven functions. Wrote CAPL scripts to simulate and validate CAN/UDS
+      communication, used Trace32 for firmware-level debugging, and managed requirement
+      traceability in IBM DOORS following the V-Model process.
+    </p>
+  </div>
+</div>
+
+<!-- Projects -->
+<div class="section" id="projects">
+  <h2>Major Projects</h2>
+
+  <div class="project-item">
+    <div class="project-imgs">
+      <div class="project-img">🚕</div>
+      <div class="project-img">📊</div>
+    </div>
+    <h3>NYC TLC AI-Powered Analytics Pipeline & Chatbot</h3>
+    <p>
+      End-to-end production-grade batch data pipeline processing 560 million NYC taxi trip records
+      spanning 28 months. Built on Azure using Data Factory for ingestion, Databricks for
+      Bronze → Silver → Gold medallion architecture, and Snowflake for business analytics.
+      Achieved 1.11% rejection rate well within industry standard of 5%. On top of the pipeline,
+      built a natural language analytics chatbot that lets business users query the 560M-record
+      dataset in plain English — converts questions to SQL using Groq LLM, executes against
+      Snowflake, and returns insights with data tables, no SQL required.
+    </p>
+    <div class="project-tags">
+      <span class="tag">Azure Data Factory</span>
+      <span class="tag">Databricks</span>
+      <span class="tag">Delta Lake</span>
+      <span class="tag">Snowflake</span>
+      <span class="tag">PySpark</span>
+      <span class="tag">Unity Catalog</span>
+      <span class="tag">Python</span>
+      <span class="tag">Groq LLM</span>
+      <span class="tag">Streamlit</span>
+    </div>
+    <a href="https://github.com/Mounika-Gullapalli/nyc_tlc_data_pipeline" target="_blank" class="project-link">View Project →</a>
+  </div>
+
+  <div class="project-item">
+    <div class="project-imgs">
+      <div class="project-img">✈️</div>
+      <div class="project-img">📈</div>
+    </div>
+    <h3>U.S. Airline On-Time Performance Analysis</h3>
+    <p>
+      Statistical analysis of 604K+ U.S. flights (BTS dataset) examining whether delays vary
+      meaningfully by airline and airport. Cleaned and validated the raw dataset down to a
+      1.22% rejection rate, then ran a one-way ANOVA (F = 275.44, p &lt; 0.001) confirming
+      significant delay differences across airlines, followed by an independent samples
+      t-test with Cohen's d effect size and a 95% confidence interval to quantify the gap
+      between the best- and worst-performing carriers. Also tested flight distance against
+      arrival delay using Pearson correlation and identified the highest-delay airports.
+    </p>
+    <div class="project-tags">
+      <span class="tag">Python</span>
+      <span class="tag">Pandas</span>
+      <span class="tag">SciPy</span>
+      <span class="tag">ANOVA</span>
+      <span class="tag">Hypothesis Testing</span>
+      <span class="tag">Matplotlib</span>
+      <span class="tag">Seaborn</span>
+    </div>
+    <a href="https://github.com/Mounika-Gullapalli/airline-ontime-performance-analysis" target="_blank" class="project-link">View Project →</a>
+  </div>
+</div>
+
+<!-- Skills -->
+<div class="section" id="skills">
+  <h2>Technical Skills</h2>
+
+  <div class="skills-category">
+    <h4>Languages & Querying</h4>
+    <ul class="skills-list">
+      <li>🐍 Python</li>
+      <li>💾 SQL</li>
+      <li>🔥 PySpark</li>
+      <li>📐 Scala</li>
+    </ul>
+  </div>
+
+  <div class="skills-category">
+    <h4>Cloud & Data Platforms</h4>
+    <ul class="skills-list">
+      <li>☁️ Azure Data Factory & ADLS Gen2</li>
+      <li>🔴 Databricks & Apache Spark</li>
+      <li>△ Delta Lake & Unity Catalog</li>
+      <li>❄️ Snowflake</li>
+      <li>🌬️ Apache Airflow</li>
+      <li>🏗️ Medallion Architecture</li>
+    </ul>
+  </div>
+
+  <div class="skills-category">
+    <h4>Data Analysis & Statistics</h4>
+    <ul class="skills-list">
+      <li>📊 Hypothesis Testing (ANOVA, t-tests)</li>
+      <li>📈 Correlation & Regression Analysis</li>
+      <li>🧮 Pandas & NumPy</li>
+      <li>📉 Matplotlib & Seaborn</li>
+    </ul>
+  </div>
+
+  <div class="skills-category">
+    <h4>BI & Reporting</h4>
+    <ul class="skills-list">
+      <li>📊 Power BI (DAX)</li>
+      <li>📽️ Looker Studio</li>
+      <li>📗 Excel (PivotTables, Lookup Functions, Reconciliation)</li>
+      <li>✅ Data Validation & Data Quality Assessment</li>
+    </ul>
+  </div>
+
+  <div class="skills-category">
+    <h4>Databases</h4>
+    <ul class="skills-list">
+      <li>🗄️ MS SQL Server</li>
+      <li>🍃 MongoDB</li>
+      <li>💽 SQLite</li>
+    </ul>
+  </div>
+
+  <div class="skills-category">
+    <h4>Tools & Other</h4>
+    <ul class="skills-list">
+      <li>🤖 LLM & AI Integration</li>
+      <li>🐙 Git & GitHub</li>
+      <li>📋 IBM DOORS</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Achievements -->
+<div class="section" id="achievements">
+  <h2>Achievements</h2>
+  <ul class="achievement-list">
+    <li>🏆 Built production pipeline processing 560M NYC taxi records across 28 months</li>
+    <li>💼 4+ years of combined experience across data engineering, business intelligence, and embedded/automotive testing</li>
+    <li>☁️ Hands-on Azure ETL experience (ADF, PySpark, SQL) at TCS, working on a healthcare data platform for Optum (United Health Group)</li>
+    <li>📈 Analytics work for a $2.6M+/year campus retail operation, driving ~10% labor cost reduction and ~20% food waste reduction</li>
+    <li>📊 Achieved 1.11% data rejection rate on the NYC TLC pipeline — well below 5% industry standard</li>
+    <li>🚗 Validated ADAS features and automotive communication protocols (CAN, UDS) at Hyundai Mobis</li>
+    <li>🤖 Built AI chatbot for natural language data querying using Groq LLM</li>
+    <li>🎖️ Add your certification here</li>
+  </ul>
+</div>
+
+<!-- Contact -->
+<div class="section" id="contact">
+  <h2>Get in Touch</h2>
+  <p class="contact-tagline">
+    Available for full-time Data Analyst and Data Engineer roles(OPT)
+  </p>
+  <div class="contact-links">
+    <a href="mailto:mounikagullapallichowdhary@gmail.com" class="contact-link">📧 Email</a>
+    <a href="https://github.com/Mounika-Gullapalli" target="_blank" class="contact-link">🐙 GitHub</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  © 2026 Mounika Gullapalli · Data Portfolio
+</footer>
+
+<script>
+(function () {
+  var canvas = document.getElementById('atom-bg');
+  var ctx = canvas.getContext('2d');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var W, H, DPR;
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Palette pulled from the existing site accents
+  var NODE_COLORS = ['96, 165, 250', '49, 181, 214', '196, 181, 253'];
+  var LINK_DIST = 120;
+  var COUNT = Math.max(50, Math.min(120, Math.floor((window.innerWidth * window.innerHeight) / 13000)));
+
+  function makeNode() {
+    var speed = 0.12 + Math.random() * 1.0;
+    var angle = Math.random() * Math.PI * 2;
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      r: 3,
+      color: NODE_COLORS[Math.floor(Math.random() * NODE_COLORS.length)],
+      pulse: Math.random() * Math.PI * 2
+    };
+  }
+
+  var nodes = [];
+  for (var i = 0; i < COUNT; i++) nodes.push(makeNode());
+
+  function step() {
+    ctx.clearRect(0, 0, W, H);
+
+    // update
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      n.x += n.vx;
+      n.y += n.vy;
+      n.pulse += 0.02;
+
+      if (n.x < -20) n.x = W + 20;
+      if (n.x > W + 20) n.x = -20;
+      if (n.y < -20) n.y = H + 20;
+      if (n.y > H + 20) n.y = -20;
+    }
+
+    // links (bonds)
+    for (var a = 0; a < nodes.length; a++) {
+      for (var b = a + 1; b < nodes.length; b++) {
+        var dx = nodes[a].x - nodes[b].x;
+        var dy = nodes[a].y - nodes[b].y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < LINK_DIST) {
+          var op = (1 - dist / LINK_DIST) * 0.55;
+          ctx.strokeStyle = 'rgba(120, 160, 220,' + op + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(nodes[a].x, nodes[a].y);
+          ctx.lineTo(nodes[b].x, nodes[b].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // nodes (atoms)
+    for (var j = 0; j < nodes.length; j++) {
+      var node = nodes[j];
+      var glow = 0.55 + Math.sin(node.pulse) * 0.25;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + node.color + ',' + glow + ')';
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = 'rgba(' + node.color + ', 0.6)';
+      ctx.fill();
+    }
+    ctx.shadowBlur = 0;
+
+    if (!reduceMotion) requestAnimationFrame(step);
+  }
+
+  step();
+})();
+</script>
+
+</body>
+</html>
